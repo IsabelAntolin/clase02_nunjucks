@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libros</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <style>
+    .container {
+      background-color: rgba(247, 240, 240, 0.753);
+      border: 1px solid black;
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/autores">Autores</a>
+          <a class="nav-link active" aria-current="page" href="/">Libros</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- ______________________________________________________________________________ -->
+  <div class="container mt-5">
+    <div class="row ">
+      <div class="col-12">
+        <h1 class="text-center mt-4">{{obj.autor.nombre}} {{obj.autor.apellido}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 ms-5">
+        <div>
+          <form action="/authors/{{obj.autor.id}}" method="post">
+            <p>ID: {{obj.autor.id}}</p>
+            <p>Notes: {{obj.autor.nota}}</p>
+            <p>Libros</p>
+            <ul> 
+              {% for lib in obj.autorLibro %}
+              <li>{{lib.titulo}}</li>
+              {%endfor%}             
+            </ul>
+            <select class="form-select" aria-label="Default select example" name="idLibro">
+              <option selected>Select an Book</option>
+              {% for libro in obj.libros %}
+              <option value="{{libro.id}}" >{{libro.titulo}}</option>
+              {%endfor%}
+            </select>            
+            <button type="submit" class="btn btn-success mt-3 mb-3">Add</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
